@@ -80,7 +80,7 @@ parser.add_argument(
     "-i",
     "--data_path",
     type=str,
-    default="assets/img_demo.png",
+    default="assets/059.png",
     help="path to the data folder",
 )
 parser.add_argument(
@@ -101,7 +101,7 @@ parser.add_argument(
     "-chk",
     "--checkpoint",
     type=str,
-    default="work_dir/MedSAM/medsam_vit_b.pth",
+    default="/data1/yisi/mywork/MedSAM/medsam_vit_b/medsam_vit_b.pth",
     help="path to the trained model",
 )
 args = parser.parse_args()
@@ -138,7 +138,7 @@ with torch.no_grad():
 medsam_seg = medsam_inference(medsam_model, image_embedding, box_1024, H, W)
 io.imsave(
     join(args.seg_path, "seg_" + os.path.basename(args.data_path)),
-    medsam_seg,
+    medsam_seg*255,
     check_contrast=False,
 )
 

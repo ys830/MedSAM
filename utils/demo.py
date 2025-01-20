@@ -76,6 +76,7 @@ class BboxPromptDemo:
                     y_min = min(self.y0, self.y1)
                     y_max = max(self.y0, self.y1)
                     bbox = np.array([x_min, y_min, x_max, y_max])
+                    self.fig.canvas.draw_idle() 
                     with torch.no_grad():
                         seg = self._infer(bbox)
                         torch.cuda.empty_cache()
